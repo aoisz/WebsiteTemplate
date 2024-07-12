@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="product_table_block_description_inherit_demo"
+        inherit_id="product.product_template_only_form_view"  name="product_table_block_description_inherit_demo">
+        <xpath expr="//notebook/page[@name='general_information']" position="after">
+            <page string="Demo" name="description_block_demo">
+                hello 
+
+            </page>
+        </xpath>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+                    <form action="/website/form/" method="get"
+                        enctype="multipart/form-data">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">New
+                                Description Block</h5>
+                            <a name="closeNewModal" class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></a>
+                        </div>
+                        <div class="modal-body">
+                     
+                            <div class="form-group">
+                                <span>Type:</span>
+                                <select class="form-control" id="type"
+                                    name="type">
+                                    <option value="">Select Type</option>
+                                    <option value="image_right">Image Right</option>
+                                    <option value="image_left">Image Left</option>
+                                    <option value="picture">Picture</option>
+                                    <option value="gallery">Gallery</option>
+                                </select>
+                            </div>
+
+       
+                            <div class="form-group">
+                                <span>Title:</span>
+                       
+                            </div>
+
+                   
+                            <div class="form-group">
+                                <span>Description:</span>
+                                <textarea class="form-control" id="description"
+                                    name="description"></textarea>
+                            </div>
+
+           
+                            <div class="form-group">
+                                <span>Image 1:</span>
+                                <input type="file" class="form-control"
+                                    id="image"
+                                    name="image" />
+                            </div>
+                           
+
+                            <div class="form-group">
+                                <span> Image 2:</span>
+                                <input type="file" class="form-control"
+                                    id="image2"
+                                    name="image2" />
+                            </div>
+
+                            <div class="form-group">
+                                <span> Image 3:</span>
+                                <input type="file" class="form-control"
+                                    id="image3"
+                                    name="image3" />
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#" role="submit"
+                                class="btn btn-primary s_website_form_send">Gửi</a>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </template>
+</odoo>

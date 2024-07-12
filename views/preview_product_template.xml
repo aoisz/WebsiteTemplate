@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="preview_product_template">
+            <field name="name">product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//sheet[@name='product_form']" position="after">
+                    <div class="d-flex flex-column" width="40%" height="620" id="preview_product_view">
+                        <div class="d-flex justify-content-between my-2 pb-2 pb-md-0" >
+                            <button string="Refresh" type="object" name="refesh_iframe" />
+                        </div>
+                        <field name="website_preview_url" id="product_preview_container"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

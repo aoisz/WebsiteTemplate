@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="website_sale_product_inherit" inherit_id="website_sale.product"
+        name="website_sale.product_table">
+        <xpath expr="//section[@id='product_detail']" position="after">
+            <div class="my-5">
+
+            </div>
+            <t t-foreach="product.product_template_id.sorted(key=lambda r: r.sequence)"
+                t-as="line">
+                <t t-if="line.product_table_block_type == 'image_right' ">
+                    <div class="oe_structure oe_empty oe_structure_not_nearest mt16">
+                        <section t-attf-id="product_block_image_right_#{line.id}"
+                            t-attf-class="s_text_image pt32 pb32 o_colored_level o_cc o_cc1 
+                   
+                         #{'d-block d-xl-none' if line.product_table_block_hide_desktop else ''}
+                         #{'d-md-none d-lg-block' if line.product_table_block_hide_ipad else ''}
+                         #{'d-none d-md-block' if line.product_table_block_hide_phone else ''}   "
+                            data-snippet="s_text_image" data-name="Text - Image"
+                            style="background-image: none;">
+
+                            <t t-if="line.product_table_block_image_shape == 'origin1' ">
+                                <div class="o_we_shape o_web_editor_Origins_02_001"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'bottom_line' ">
+                                <div class="o_we_shape o_web_editor_Origins_07_002"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'blue_gradiant' ">
+                                <div class="o_we_shape o_web_editor_Origins_18 o_we_animated"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'arrow_bot' ">
+                                <div class="o_we_shape o_web_editor_Airy_01"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'arrow_top' ">
+                                <div class="o_we_shape o_web_editor_Airy_02"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'wave' ">
+                                <div class="o_we_shape o_web_editor_Airy_03_001 o_we_animated"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'right_wave' ">
+                                <div class="o_we_shape o_web_editor_Airy_04_001 o_we_animated"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'left_wave' ">
+                                <div class="o_we_shape o_web_editor_Airy_06"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'spider_web' ">
+                                <div class="o_we_shape o_web_editor_Airy_08"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'grid' ">
+                                <div class="o_we_shape o_web_editor_Airy_09"></div>
+                            </t>
+
+
+                            <div
+                                t-attf-class="#{'o_container_small' if line.product_table_block_content_width == 'small' else 'container' if line.product_table_block_content_width == 'regular' else 'container-fluid' if line.product_table_block_content_width == 'full' else '' }
+                            #{'o_half_screen_height' if line.product_table_block_content_height =='half' else ''}   
+                            #{'o_full_screen_height' if line.product_table_block_content_height =='full' else ''} "
+                                id="product_block_image_right_container "
+                            >
+                                <div
+                                    t-attf-class="row #{ 'align-items-start' if line.product_table_block_content_align == 'top' else 'align-items-center' if line.product_table_block_content_align == 'middle' else 'align-items-end' if line.product_table_block_content_align == 'bot' else 'align-items-stretch' if line.product_table_block_content_align == 'stretch' else '' }">
+
+                                    <div class="col-lg-6 pt16 pb16 o_colored_level">
+                                        <t t-if="line.product_table_block_title">
+                                            <h2 class="o_default_snippet_text">
+                                                <span
+                                                    t-att-style="line.product_block_title_text_color and 'color: ' + line.product_block_title_text_color or ''"
+                                                    t-esc="line.product_table_block_title" />
+                                            </h2>
+                                        </t>
+
+                                        <t t-if="line.product_block_description">
+                                            <p
+                                                t-att-style="line.product_block_description_text_color and 'color: ' + line.product_block_description_text_color or ''"
+                                                class="o_default_snippet_text"
+                                                t-esc="line.product_block_description">
+
+                                            </p>
+                                        </t>
+                                        <t t-if="line.product_table_block_button">
+                                            <p>
+                                                <a
+                                                    t-attf-href="#{line.product_table_block_button_link or '#'}"
+                                                    t-attf-class="btn btn-#{line.product_table_block_button_color} o_default_snippet_text">
+                                                    <span
+                                                        t-esc="line.product_table_block_button_title" />
+                                                </a>
+                                            </p>
+                                        </t>
+                                    </div>
+                                    <div class="pt16 pb16 col-lg-6 o_colored_level">
+                                        <img
+                                            t-att-src="'/web/image/product_table_block_description/' + str(line.id) + '/product_table_block_image'"
+                                            alt="Product Image" class="img img-fluid mx-auto"
+                                            loading="lazy" />
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <t t-if="line.product_block_background">
+                                <style>
+                                    <t
+                                        t-esc="'''
+                                #product_block_image_right_{} {{
+                                    background-color: {};
+                                }}
+                                '''.format(line.id, line.product_block_background)" />
+                                </style>
+                            </t>
+                        </section>
+                    </div>
+                </t>
+
+                <t t-if="line.product_table_block_type == 'image_left' ">
+                    <div class="oe_structure oe_empty oe_structure_not_nearest mt16">
+                        <section t-attf-id="product_block_image_left_#{line.id}"
+                            t-attf-class="s_text_image pt32 pb32 o_colored_level o_cc o_cc1
+                        #{'d-block d-xl-none' if line.product_table_block_hide_desktop else ''}
+                        #{'d-md-none d-lg-block' if line.product_table_block_hide_ipad else ''}
+                        #{'d-none d-md-block' if line.product_table_block_hide_phone else ''}   "
+                            data-snippet="s_text_image" data-name="Text - Image"
+                            style="background-image: none;">
+
+
+                            <t t-if="line.product_table_block_image_shape == 'origin1' ">
+                                <div class="o_we_shape o_web_editor_Origins_02_001"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'bottom_line' ">
+                                <div class="o_we_shape o_web_editor_Origins_07_002"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'blue_gradiant' ">
+                                <div class="o_we_shape o_web_editor_Origins_18 o_we_animated"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'arrow_bot' ">
+                                <div class="o_we_shape o_web_editor_Airy_01"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'arrow_top' ">
+                                <div class="o_we_shape o_web_editor_Airy_02"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'wave' ">
+                                <div class="o_we_shape o_web_editor_Airy_03_001 o_we_animated"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'right_wave' ">
+                                <div class="o_we_shape o_web_editor_Airy_04_001 o_we_animated"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'left_wave' ">
+                                <div class="o_we_shape o_web_editor_Airy_06"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'spider_web' ">
+                                <div class="o_we_shape o_web_editor_Airy_08"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'grid' ">
+                                <div class="o_we_shape o_web_editor_Airy_09"></div>
+                            </t>
+                            <div
+                                t-attf-class=" 
+                            #{'o_half_screen_height' if line.product_table_block_content_height =='half' else ''}   
+                            #{'o_full_screen_height' if line.product_table_block_content_height =='full' else ''} 
+                            #{'o_container_small' if line.product_table_block_content_width == 'small' else 'container' if line.product_table_block_content_width == 'regular' else 'container-fluid' if line.product_table_block_content_width == 'full' else '' }"
+                                id="product_block_image_right_container">
+                                <div
+                                    t-attf-class="row #{ 'align-items-start' if line.product_table_block_content_align == 'top' else 'align-items-center' if line.product_table_block_content_align == 'middle' else 'align-items-end' if line.product_table_block_content_align == 'bot' else 'align-items-stretch' if line.product_table_block_content_align == 'stretch' else '' }">
+
+                                    <div class="pt16 pb16 col-lg-6 o_colored_level">
+                                        <img
+                                            t-att-src="'/web/image/product_table_block_description/' + str(line.id) + '/product_table_block_image'"
+                                            alt="Product Image" class="img img-fluid mx-auto"
+                                            loading="lazy" />
+                                    </div>
+                                    <div class="col-lg-6 pt16 pb16 o_colored_level">
+                                        <t t-if="line.product_table_block_title">
+                                            <h2 class="o_default_snippet_text">
+                                                <span
+                                                    t-att-style="line.product_block_title_text_color and 'color: ' + line.product_block_title_text_color or ''"
+                                                    t-esc="line.product_table_block_title" />
+                                            </h2>
+                                        </t>
+                                        <t t-if="line.product_block_description">
+                                            <p class="o_default_snippet_text"
+                                                t-att-style="line.product_block_description_text_color and 'color: ' + line.product_block_description_text_color or ''"
+                                                t-esc="line.product_block_description">
+
+                                            </p>
+                                        </t>
+                                        <t t-if="line.product_table_block_button">
+                                            <p>
+                                                <a
+                                                    t-attf-href="#{line.product_table_block_button_link or '#'}"
+                                                    t-attf-class="btn btn-#{line.product_table_block_button_color} o_default_snippet_text">
+                                                    <span
+                                                        t-esc="line.product_table_block_button_title" />
+                                                </a>
+                                            </p>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                            <t t-if="line.product_block_background">
+                                <style>
+                                    <t
+                                        t-esc="'''
+                            #product_block_image_left_{} {{
+                                background-color: {};
+                            }}
+                            '''.format(line.id, line.product_block_background)" />
+                                </style>
+                            </t>
+                        </section>
+                    </div>
+                </t>
+
+                <t t-if="line.product_table_block_type == 'picture' ">
+                    <div class="oe_structure oe_empty oe_structure_not_nearest mt16">
+                        <section t-attf-id="product_block_picture_#{line.id}"
+                            t-attf-class="s_picture pt48 pb24 o_cc o_colored_level
+                    #{'d-block d-xl-none' if line.product_table_block_hide_desktop else ''}
+                    #{'d-md-none d-lg-block' if line.product_table_block_hide_ipad else ''}
+                    #{'d-none d-md-block' if line.product_table_block_hide_phone else ''}   "
+                            data-snippet="s_picture" data-name="Picture"
+                            style="background-image: none;">
+
+                            <t t-if="line.product_table_block_image_shape == 'origin1' ">
+                                <div class="o_we_shape o_web_editor_Origins_02_001"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'bottom_line' ">
+                                <div class="o_we_shape o_web_editor_Origins_07_002"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'blue_gradiant' ">
+                                <div class="o_we_shape o_web_editor_Origins_18 o_we_animated"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'arrow_bot' ">
+                                <div class="o_we_shape o_web_editor_Airy_01"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'arrow_top' ">
+                                <div class="o_we_shape o_web_editor_Airy_02"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'wave' ">
+                                <div class="o_we_shape o_web_editor_Airy_03_001 o_we_animated"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'right_wave' ">
+                                <div class="o_we_shape o_web_editor_Airy_04_001 o_we_animated"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'left_wave' ">
+                                <div class="o_we_shape o_web_editor_Airy_06"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'spider_web' ">
+                                <div class="o_we_shape o_web_editor_Airy_08"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'grid' ">
+                                <div class="o_we_shape o_web_editor_Airy_09"></div>
+                            </t>
+                            <div
+                                t-attf-class="
+                            #{'o_half_screen_height' if line.product_table_block_content_height =='half' else ''}   
+                            #{'o_full_screen_height' if line.product_table_block_content_height =='full' else ''} 
+                            #{'o_container_small' if line.product_table_block_content_width == 'small' else 'container' if line.product_table_block_content_width == 'regular' else 'container-fluid' if line.product_table_block_content_width == 'full' else '' }">
+                                <t t-if="line.product_table_block_title">
+                                    <h2 class="display-3-fs o_default_snippet_text"
+                                        style="text-align: center;">
+                                        <span
+                                            t-att-style="line.product_block_title_text_color and 'color: ' + line.product_block_title_text_color or ''"
+                                            t-esc="line.product_table_block_title" />
+                                    </h2>
+                                </t>
+                                <t t-if="line.product_block_description">
+                                    <p style="text-align: center;" class="o_default_snippet_text">
+                                        <span t-esc="line.product_block_description"
+                                            t-att-style="line.product_block_description_text_color and 'color: ' + line.product_block_description_text_color or ''" />
+                                    </p>
+                                </t>
+                                <p style="text-align: center;">
+                                    <br />
+                                </p>
+                                <div class="row s_nb_column_fixed">
+                                    <div class="col-lg-10 offset-lg-1 pb24 o_colored_level"
+                                        style="text-align: center;">
+                                        <figure class="figure">
+                                            <img
+                                                t-att-src="'/web/image/product_table_block_description/' + str(line.id) +  '/product_table_block_image'"
+                                                alt="Product Image" class="img img-fluid mx-auto"
+                                                loading="lazy" />
+                                            <t t-if="line.product_table_block_sub_description">
+                                                <figcaption
+                                                    class="figure-caption text-muted py-3 o_default_snippet_text">
+                                                    <span
+                                                        t-att-style="line.product_block_sub_description_text_color and 'color: ' + line.product_block_sub_description_text_color or ''"
+                                                        t-esc="line.product_table_block_sub_description" />
+                                                    <p></p>
+
+                                                </figcaption>
+                                            </t>
+                                            <t t-if="line.product_table_block_button">
+                                                <p>
+                                                    <a
+                                                        t-attf-href="#{line.product_table_block_button_link or '#'}"
+                                                        t-attf-class="mt-3 btn btn-#{line.product_table_block_button_color} o_default_snippet_text">
+                                                        <span
+                                                            t-esc="line.product_table_block_button_title" />
+                                                    </a>
+                                                </p>
+                                            </t>
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                            <t t-if="line.product_block_background">
+                                <style>
+                                    <t
+                                        t-esc="'''
+                            #product_block_picture_{} {{
+                                background-color: {};
+                            }}
+                            '''.format(line.id, line.product_block_background)" />
+                                </style>
+                            </t>
+                        </section>
+                    </div>
+                </t>
+
+
+                <t t-if="line.product_table_block_type == 'gallery' ">
+                    <div class="oe_structure oe_empty oe_structure_not_nearest mt16">
+                        <section t-attf-id="product_block_gallery_#{line.id}"
+                            t-attf-class="s_image_gallery o_slideshow s_image_gallery_show_indicators pt24 
+                    s_image_gallery_indicators_dots o_colored_level
+                    #{'d-block d-xl-none' if line.product_table_block_hide_desktop else ''}
+                    #{'d-md-none d-lg-block' if line.product_table_block_hide_ipad else ''}
+                    #{'d-none d-md-block' if line.product_table_block_hide_phone else ''}   "
+                            data-vcss="001" data-columns="3"
+                            style="height: 500px; overflow: hidden; background-image: none;"
+                            data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Floats/12&quot;, &quot;flip&quot;:[]}"
+                            data-snippet="s_image_gallery" data-name="Image Gallery">
+
+                            <t t-if="line.product_table_block_image_shape == 'origin1' ">
+                                <div class="o_we_shape o_web_editor_Origins_02_001"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'bottom_line' ">
+                                <div class="o_we_shape o_web_editor_Origins_07_002"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'blue_gradiant' ">
+                                <div class="o_we_shape o_web_editor_Origins_18 o_we_animated"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'arrow_bot' ">
+                                <div class="o_we_shape o_web_editor_Airy_01"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'arrow_top' ">
+                                <div class="o_we_shape o_web_editor_Airy_02"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'wave' ">
+                                <div class="o_we_shape o_web_editor_Airy_03_001 o_we_animated"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'right_wave' ">
+                                <div class="o_we_shape o_web_editor_Airy_04_001 o_we_animated"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'left_wave' ">
+                                <div class="o_we_shape o_web_editor_Airy_06"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'spider_web' ">
+                                <div class="o_we_shape o_web_editor_Airy_08"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'grid' ">
+                                <div class="o_we_shape o_web_editor_Airy_09"></div>
+                            </t>
+
+                            <div
+                                t-attf-class="
+                            #{'o_half_screen_height' if line.product_table_block_content_height =='half' else ''}   
+                            #{'o_full_screen_height' if line.product_table_block_content_height =='full' else ''} 
+                            #{'o_container_small' if line.product_table_block_content_width == 'small' else 'container' if line.product_table_block_content_width == 'regular' else 'container-fluid' if line.product_table_block_content_width == 'full' else '' }">
+                                <div id="slideshow_1714116383045" class="carousel slide"
+                                    data-bs-ride="carousel" data-bs-interval="0" data-bs-wrap="true"
+                                    style="margin: 0 12px;">
+                                    <div class="carousel-inner" style="padding: 0;">
+                                        <t t-set="is_active" t-value="True" />
+                                        <t
+                                            t-foreach="line.product_model_images.sorted(key=lambda r: r.sequence)"
+                                            t-as="imageforeach">
+
+                                            <div
+                                                t-attf-class="carousel-item #{'active' if is_active else ''}"
+                                                style="min-height: 476px;">
+                                                <t t-set="is_active" t-value="False" />
+                                                <img loading="lazy"
+                                                    class="img img-fluid mx-auto"
+                                                    alt="Product Image Gallery"
+                                                    t-att-src="'/web/image/product_table_block_image_model/' + str(imageforeach.id) + '/image'" />
+                                             
+                                            </div>
+                                        </t>
+
+                                    </div>
+                                    <!-- <ul class="carousel-indicators">
+                                        <t t-set="indicator_count" t-value="0" />
+                                        <t t-foreach="line.product_model_images.sorted(key=lambda r: r.sequence)" t-as="imageforeach">
+                                            <li data-bs-target="#slideshow_1714116383045" t-att-data-bs-slide-to="indicator_count"
+                                    t-attf-class="#{ 'active' if indicator_count == 0 else ''
+                                    }"></li>
+                                            <t t-set="indicator_count" t-value="indicator_count + 1" />
+                                        </t>
+                                    </ul>-->
+                                    <a class="carousel-control-prev o_we_no_overlay o_not_editable"
+                                        href="#slideshow_1714116383045" data-bs-slide="prev"
+                                        aria-label="Previous" title="Previous">
+                                        <span class="oi oi-chevron-left fa-2x text-white"></span>
+                                        <span class="visually-hidden o_default_snippet_text">
+                                            Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next o_we_no_overlay o_not_editable"
+                                        href="#slideshow_1714116383045" data-bs-slide="next"
+                                        aria-label="Next" title="Next">
+                                        <span class="oi oi-chevron-right fa-2x text-white"></span>
+                                        <span class="visually-hidden o_default_snippet_text">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <t t-if="line.product_block_background">
+                                <style>
+                                    <t
+                                        t-esc="'''
+                            #product_block_gallery_{} {{
+                                background-color: {};
+                            }}
+                            '''.format(line.id, line.product_block_background)" />
+                                </style>
+                            </t>
+                        </section>
+                    </div>
+                </t>
+                <t t-if="line.product_table_block_type == 'image_wall' ">
+                    <div class="oe_structure oe_empty oe_structure_not_nearest mt16">
+                        <section
+                            t-attf-class="s_image_gallery o_spc-small o_masonry pt24 pb24 o_colored_level
+                         #{'d-block d-xl-none' if line.product_table_block_hide_desktop else ''}
+                         #{'d-md-none d-lg-block' if line.product_table_block_hide_ipad else ''}
+                         #{'d-none d-md-block' if line.product_table_block_hide_phone else ''}   "
+                            data-vcss="001" data-columns="3"
+                            style="overflow: hidden; background-image: none;"
+                            data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Floats/12&quot;}"
+                            data-snippet="s_images_wall" data-name="Images Wall">
+
+                            <t t-if="line.product_table_block_image_shape == 'origin1' ">
+                                <div class="o_we_shape o_web_editor_Origins_02_001"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'bottom_line' ">
+                                <div class="o_we_shape o_web_editor_Origins_07_002"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'blue_gradiant' ">
+                                <div class="o_we_shape o_web_editor_Origins_18 o_we_animated"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'arrow_bot' ">
+                                <div class="o_we_shape o_web_editor_Airy_01"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'arrow_top' ">
+                                <div class="o_we_shape o_web_editor_Airy_02"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'wave' ">
+                                <div class="o_we_shape o_web_editor_Airy_03_001 o_we_animated"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'right_wave' ">
+                                <div class="o_we_shape o_web_editor_Airy_04_001 o_we_animated"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'left_wave' ">
+                                <div class="o_we_shape o_web_editor_Airy_06"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'spider_web' ">
+                                <div class="o_we_shape o_web_editor_Airy_08"></div>
+                            </t>
+
+                            <t t-if="line.product_table_block_image_shape == 'grid' ">
+                                <div class="o_we_shape o_web_editor_Airy_09"></div>
+                            </t>
+                         
+                            <div
+                                t-attf-class="
+                        #{'o_container_small' if line.product_table_block_content_width == 'small' else 'container' if line.product_table_block_content_width == 'regular' else 'container-fluid' if line.product_table_block_content_width == 'full' else '' }
+                        #{'o_half_screen_height' if line.product_table_block_content_height =='half' else ''}   
+                        #{'o_full_screen_height' if line.product_table_block_content_height =='full' else ''} ">
+                                <div class="row s_nb_column_fixed">
+                                    <t
+                                        t-foreach="line.product_model_images.sorted(key=lambda r: r.sequence)"
+                                        t-as="imageforeach">
+                                        <div class="o_masonry_col o_snippet_not_selectable col-lg-4">
+                                            <img loading="lazy"
+                                                class="img img-fluid d-block rounded"
+                                                alt="Product Image Wall"
+                                                t-att-src="'/web/image/product_table_block_image_model/' + str(imageforeach.id) + '/image'" />
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                </t>
+
+
+            </t>
+
+        </xpath>
+
+
+    </template>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id="base_new_block_menu"
+        name="Block Template"
+        sequence="96" />
+    <menuitem
+        id="new_block_menu"
+        name="New Block"
+        sequence="0" parent="base_new_block_menu" action="new_block_record" />
+
+    <record id="new_block_record" model="ir.actions.act_window">
+        <field name="name">All Block</field>
+        <field name="res_model">product_table_block_description</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

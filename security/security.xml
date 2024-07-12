@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--Define the
+        group -->
+
+        <record id="my_custom_group" model="res.groups">
+            <field name="name">My Custom Group</field>
+            <field name="category_id" ref="base.module_category_hidden" />
+            <field name="implied_ids" eval="[(4, ref('base.group_public'))]" />
+        </record>
+
+        <!-- <record id="my_custom_group_user" model="res.groups">
+            <field name="name">My Custom Group User</field>
+            <field name="category_id" ref="base.module_category_hidden" />
+            <field name="implied_ids" eval="[(4, ref('my_custom_group'))]" />
+            <field name="users" eval="[(4, ref('base.user_root')),(4, ref('base.user_admin'))]" />
+        </record> -->
+
+        <record id="course_group_user" model="res.groups">
+            <field name="name">Course User</field>
+            <field name="category_id" ref="base.module_category_hidden" />
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+        </record>
+        <record id="course_group_manager" model="res.groups">
+            <field name="name">Course Manager</field>
+            <field name="category_id" ref="base.module_category_hidden" />
+            <field name="implied_ids" eval="[(4, ref('course_group_user'))]" />
+            <field name="users" eval="[(4, ref('base.user_root')),(4, ref('base.user_admin'))]" />
+        </record>
+
+    </data>
+</odoo>
