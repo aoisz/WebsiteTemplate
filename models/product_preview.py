@@ -4,15 +4,20 @@ from odoo.http import request
 
 class ProductPreview(models.Model):
     _inherit = "product.template"
+
+    website_preview_url = fields.Html("Preview", sanitize = False, compute = '_get_html')
+
+    def toggle_publish(self):
+        for record in self:
+            record.website_published = not record.website_published
+        return True
+
     def refesh_iframe(self):
         return {
             'type': 'ir.actions.client',
             'tag': 'reload'
         }
-
-    website_preview_url = fields.Html("Preview", sanitize = False, compute = '_get_html')
-
     def _get_html(self):
         for product in self: 
             url = f"{request.httprequest.host_url}shop/{slug(product)}"
-            product.website_preview_url = f'<iframe src="{url}" width="100%" height="100%" class="shadow" id="product_preview_iframe"><p>Your browser does not support iframes.</p></iframe>'
+            product.website_preview_url = f'<iframe src="{url}" class="shadow" id="product_preview_iframe"><p>Your browser does not support iframes.</p></iframe>'

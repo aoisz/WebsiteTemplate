@@ -3,14 +3,18 @@
 }
 
 .o_form_editable .o_form_sheet_bg {
-    max-width: 60% !important;
+    max-width: 47% !important;
 }
 
 #preview_product_view {
-    min-width: 40% !important;
+    min-width: 53% !important;
+}
+
+#website_preview_container {
+    max-height: 680px;
+    overflow: hidden;
 }
 
 #product_preview_iframe { 
-    height: 100%; 
     width: 100%;
 }

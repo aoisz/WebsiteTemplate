@@ -7,11 +7,19 @@
             <field name="inherit_id" ref="product.product_template_only_form_view" />
             <field name="arch" type="xml">
                 <xpath expr="//sheet[@name='product_form']" position="after">
-                    <div class="d-flex flex-column" width="40%" height="620" id="preview_product_view">
-                        <div class="d-flex justify-content-between my-2 pb-2 pb-md-0" >
+                    <div class="d-flex flex-column" id="preview_product_view">
+                        <div class="d-flex my-2 pb-md-0" >
                             <button string="Refresh" type="object" name="refesh_iframe" />
+                            <div class="form-check form-switch h-100 mx-2 d-flex justify-content-center align-items-center">
+                                <button class="oe_stat_button d-flex justify-content-center align-items-center" type="object" name="toggle_publish" icon="fa-globe">
+                                    Publish product website
+                                    <field class="ms-3 mt-1" name="website_published" widget="boolean_button" options="{'terminology': {'string_true': 'Published', 'string_false': 'Not Published'}}"/>
+                                </button>
+                            </div>
                         </div>
-                        <field name="website_preview_url" id="product_preview_container"/>
+                        <div class="border" id="website_preview_container">
+                            <field name="website_preview_url"/>
+                        </div>
                     </div>
                 </xpath>
             </field>
