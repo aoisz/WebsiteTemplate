@@ -22,7 +22,7 @@
                             </button>
                         </div>
                         <div class="border" id="website_preview_container">
-                            <field name="website_preview_url"/>
+                            <field name="website_preview_url" class="h-100" id="website_preview_url"/>
                         </div>
                     </div>
                 </xpath>
