@@ -33,6 +33,6 @@ class ProductPreview(models.Model):
         for product in self:
             url = f"{request.httprequest.host_url}shop/{slug(product)}"
             if(product.mobile_view == True):
-                product.website_preview_url = f'<div class="smartphone"><div class="content"><iframe src="{url}" class="shadow" id="preview_iframe"><p>Your browser does not support iframes.</p></iframe></div></div>'
+                product.website_preview_url = f'<div class="smartphone"><div class="content"><iframe src="{url}" class="shadow" id="preview_iframe" style="padding-bottom: 180px"><p>Your browser does not support iframes.</p></iframe></div></div>'
             else:
-                product.website_preview_url = f'<iframe src="{url}" class="shadow" id="product_preview_iframe"><p>Your browser does not support iframes.</p></iframe>'
+                product.website_preview_url = f'<iframe src="{url}" class="shadow" id="preview_iframe" style="padding-bottom: 58px"><p>Your browser does not support iframes.</p></iframe>'
