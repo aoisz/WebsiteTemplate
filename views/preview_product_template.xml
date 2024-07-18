@@ -11,11 +11,15 @@
                         <div class="d-flex my-2 pb-md-0" >
                             <button string="Refresh" type="object" name="refesh_iframe" />
                             <div class="form-check form-switch h-100 mx-2 d-flex justify-content-center align-items-center">
-                                <button class="oe_stat_button d-flex justify-content-center align-items-center" type="object" name="toggle_publish" icon="fa-globe">
-                                    Publish product website
+                                <button class="oe_stat_button d-flex align-items-center" type="object" name="toggle_publish" icon="fa-globe">
+                                    <span>Publish product website</span>
                                     <field class="ms-3 mt-1" name="website_published" widget="boolean_button" options="{'terminology': {'string_true': 'Published', 'string_false': 'Not Published'}}"/>
                                 </button>
                             </div>
+                            <button class="oe_stat_button btn btn-secondary-outline" icon="fa-mobile" type="object" name="change_view_mode" context="{'id': id}">
+                                <span class="h-100">Mobile</span>
+                                <field class="ms-1 mt-1" name="mobile_view" widget="boolean_button" options="{'terminology': {'string_true': 'Is Mobile View', 'string_false': 'Not Mobile View'}}"/>
+                            </button>
                         </div>
                         <div class="border" id="website_preview_container">
                             <field name="website_preview_url"/>
