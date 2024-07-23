@@ -6,9 +6,9 @@
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_only_form_view" />
             <field name="arch" type="xml">
-                <xpath expr="//sheet[@name='product_form']" position="after">
-                    <div class="d-flex flex-column" id="preview_product_view">
-                        <div class="d-flex my-2 pb-md-0" >
+                <xpath expr="//sheet[@name='product_form']" position="inside">
+                    <div class="border" id="preview_product_view" invisible="not show_preview">
+                        <div class="d-flex mt-2" >
                             <button string="Refresh" type="object" name="refesh_iframe" />
                             <div class="form-check form-switch h-100 mx-2 d-flex justify-content-center align-items-center">
                                 <button class="oe_stat_button d-flex align-items-center" type="object" name="toggle_publish" icon="fa-globe">
@@ -21,10 +21,17 @@
                                 <field class="ms-1 mt-1" name="mobile_view" widget="boolean_button" options="{'terminology': {'string_true': 'Is Mobile View', 'string_false': 'Not Mobile View'}}"/>
                             </button>
                         </div>
-                        <div class="border" id="website_preview_container">
+                        <div id="website_preview_container">
                             <field name="website_preview_url" class="h-100" id="website_preview_url"/>
                         </div>
                     </div>
+                </xpath>
+
+                <xpath expr="//div[@name='options']" position="inside">
+                    <span class="d-inline-block">
+                        <field name="show_preview" field_id="show_preview"/>
+                        <label for="show_preview"/>
+                    </span>
                 </xpath>
             </field>
         </record>
