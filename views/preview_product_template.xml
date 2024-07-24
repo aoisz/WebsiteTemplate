@@ -6,27 +6,31 @@
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_only_form_view" />
             <field name="arch" type="xml">
+                <!-- Thêm iframe dùng cho Preview vào trong Sheet Product Form -->
                 <xpath expr="//sheet[@name='product_form']" position="inside">
                     <div class="border" id="preview_product_view" invisible="not show_preview">
                         <div class="d-flex mt-2" >
                             <button string="Refresh" type="object" name="refesh_iframe" />
                             <div class="form-check form-switch h-100 mx-2 d-flex justify-content-center align-items-center">
-                                <button class="oe_stat_button d-flex align-items-center" type="object" name="toggle_publish" icon="fa-globe">
-                                    <span>Publish product website</span>
-                                    <field class="ms-3 mt-1" name="website_published" widget="boolean_button" options="{'terminology': {'string_true': 'Published', 'string_false': 'Not Published'}}"/>
+                                <button class="oe_stat_button d-flex align-items-center" type="object" name="toggle_publish">
+                                    <field class="ms-3 mt-1" name="website_published" widget="boolean_button" field_id="website_published" options="{'terminology': {'string_true': 'Published', 'string_false': 'Not Published'}}"/>
+                                    <label for="website_published" string="Publish"/>
                                 </button>
                             </div>
-                            <button class="oe_stat_button btn btn-secondary-outline" icon="fa-mobile" type="object" name="change_view_mode" context="{'id': id}">
-                                <span class="h-100">Mobile</span>
-                                <field class="ms-1 mt-1" name="mobile_view" widget="boolean_button" options="{'terminology': {'string_true': 'Is Mobile View', 'string_false': 'Not Mobile View'}}"/>
+                            <button class="oe_stat_button btn btn-secondary-outline" type="object" name="change_view_mode" context="{'id': id}">
+                                <field class="ms-1 mt-1" name="mobile_view" widget="boolean_button" field_id="mobile_view" options="{'terminology': {'string_true': 'Is Mobile View', 'string_false': 'Not Mobile View'}}"/>
+                                <label for="mobile_view"/>
                             </button>
                         </div>
                         <div id="website_preview_container">
-                            <field name="website_preview_url" class="h-100" id="website_preview_url"/>
+                            <field name="website_preview_url"/>
                         </div>
                     </div>
                 </xpath>
-
+                <!-- 
+                    - Thêm checkbox vào nhóm Checkbox option để toggle phần product Preview
+                    - Checkbox được thêm vào cạnh checkbox "Can be Purchased" trong Product Template
+                -->
                 <xpath expr="//div[@name='options']" position="inside">
                     <span class="d-inline-block">
                         <field name="show_preview" field_id="show_preview"/>
