@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <!-- Thêm iframe dùng cho Preview vào trong Sheet Product Form -->
                 <xpath expr="//sheet[@name='product_form']" position="inside">
-                    <div class="border" id="preview_product_view" invisible="not show_preview">
+                    <div class="shadow-lg" id="preview_product_view" invisible="not show_preview">
                         <div class="d-flex mt-2" >
                             <button string="Refresh" type="object" name="refesh_iframe" />
                             <div class="form-check form-switch h-100 mx-2 d-flex justify-content-center align-items-center">
