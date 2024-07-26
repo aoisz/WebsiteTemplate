@@ -1,4 +1,4 @@
-from odoo import _, fields, models
+from odoo import _, fields, models, api
 from odoo.addons.http_routing.models.ir_http import slug
 from odoo.http import request
 
@@ -14,6 +14,13 @@ class ProductPreview(models.Model):
         for record in self:
             record.website_published = not record.website_published
         return True
+
+    # Toggle preview
+    def toggle_preview(self):
+        product_id = self.env.context.get("id")
+        for product in self:
+            if product_id == product.id:
+                product.show_preview = not product.show_preview
 
     # Reload UI
     def refesh_iframe(self):

@@ -21,6 +21,7 @@
                                 <field class="ms-1 mt-1" name="mobile_view" widget="boolean_button" field_id="mobile_view" options="{'terminology': {'string_true': 'Is Mobile View', 'string_false': 'Not Mobile View'}}"/>
                                 <label for="mobile_view"/>
                             </button>
+                            <button class="btn btn-secondary-outline ms-auto" type="object" name="toggle_preview" string="&#10006;" context="{'id': id}"></button>
                         </div>
                         <div id="website_preview_container">
                             <field name="website_preview_url"/>
@@ -28,12 +29,15 @@
                     </div>
                 </xpath>
                 <!-- 
-                    - Thêm checkbox vào nhóm Checkbox option để toggle phần product Preview
-                    - Checkbox được thêm vào cạnh checkbox "Can be Purchased" trong Product Template
+                    - Thêm Button bên cạnh button Print Labels để toggle phần product Preview
                 -->
+                <xpath expr="//form[@name='Product Template']/header">
+                    <button class="btn btn-secondary" string="Preview" type="object" name="toggle_preview" context="{'id': id}"></button>
+                </xpath>
+
                 <xpath expr="//div[@name='options']" position="inside">
                     <span class="d-inline-block">
-                        <field name="show_preview" field_id="show_preview"/>
+                        <field name="show_preview" field_id="show_preview" invisible="True"/>
                         <label for="show_preview"/>
                     </span>
                 </xpath>
